@@ -9,6 +9,10 @@ public class Camera_CameraControl : MonoBehaviour
 
     }
 
+
+    public Transform relativeTransform;
+
+
     void Update()
     {
         Move();
@@ -42,39 +46,51 @@ public class Camera_CameraControl : MonoBehaviour
     void Move()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Vector3 moveDirection = Vector3.zero;
         //Move Forward
+        float moveSpeed = 10;
         if (Input.GetKey(KeyCode.W))
         {
-            Vector3 position = this.transform.position;
-            position.z += .1f;
-            this.transform.position = position;
+            moveDirection += relativeTransform.forward;
+            moveDirection.y = 0f;
+            LockCameraZ();
+            this.transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
         }
+
         //Move Left
         if (Input.GetKey(KeyCode.A))
         {
-            Vector3 position = this.transform.position;
-            position.x -= .1f;
-            this.transform.position = position;
+            moveDirection -= relativeTransform.right;
+            moveDirection.y = 0f;
+            LockCameraZ();
+            this.transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
         }
         //Move Back
         if (Input.GetKey(KeyCode.S))
         {
-            Vector3 position = this.transform.position;
-            position.z -= .1f;
-            this.transform.position = position;
+            moveDirection -= relativeTransform.forward;
+            moveDirection.y = 0f;
+            LockCameraZ();
+            this.transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
         }
         //Move Right
         if (Input.GetKey(KeyCode.D))
         {
-            Vector3 position = this.transform.position;
-            position.x += .1f;
-            this.transform.position = position;
+            moveDirection += relativeTransform.right;
+            moveDirection.y = 0f;
+            LockCameraZ();
+            this.transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
         }
+
+
 
         //Look Around
         float h = Input.GetAxisRaw("Mouse X");
         float v = Input.GetAxisRaw("Mouse Y");
         transform.Rotate(-v, h, 0f);
+
+        //if (moveDirection != Vector3.zero)
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(moveDirection), rotationSpeed * Time.deltaTime);
 
         LockCameraZ();
         CameraBoundariesX();

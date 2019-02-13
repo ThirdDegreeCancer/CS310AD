@@ -18,28 +18,32 @@ public class Player_CameraControl : MonoBehaviour
     void Move()
     {
         //Move Forward
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
+            /*
             Vector3 position = this.transform.position;
             position.z += .1f;
             transform.position = position;
+            */
+            print("UpArrow");
+            transform.Translate(Vector3.forward);
         }
         //Move Left
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             Vector3 position = this.transform.position;
             position.x -= .1f;
             transform.position = position;
         }
         //Move Back
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             Vector3 position = this.transform.position;
             position.z -= .1f;
             transform.position = position;
         }
         //Move Right
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             Vector3 position = this.transform.position;
             position.x += .1f;
