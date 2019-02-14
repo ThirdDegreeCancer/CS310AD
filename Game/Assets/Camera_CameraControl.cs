@@ -4,18 +4,31 @@ using UnityEngine;
 
 public class Camera_CameraControl : MonoBehaviour
 {
+    public Transform target;
+    public Transform relativeTransform;
+    private Vector3 point;
+    private Vector3 offset = Vector3.zero;
+    private Vector3 offsetY = Vector3.zero;
+
     void Start()
     {
+        point = target.transform.position;//get target's coords
+        offset = new Vector3(target.position.x, target.position.y + 1.0f, target.position.z + 7.0f);
 
+        transform.LookAt(point);//makes the camera look to it
     }
-
-
-    public Transform relativeTransform;
-
 
     void Update()
     {
         Move();
+    }
+    void LateUpdate()
+    {
+        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * 10, Vector3.up) * offset;
+        transform.position = target.position + offset;
+        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * 10, Vector3.up) * offset;
+        transform.position = target.position + offset;
+        transform.LookAt(target.position);
     }
 
     void CameraBoundariesX()
@@ -25,17 +38,18 @@ public class Camera_CameraControl : MonoBehaviour
         float z = transform.eulerAngles.z;
         bool top = false;
 
-        if (x < 360 && x > 270)
+        if (x < 360f && x > 270f)
             top = true;
         else
             top = false;
-        if (x < 340 && x < 360 && top)
+        if (x < 280f && top)
         {
-            this.transform.rotation = Quaternion.Euler(340, y, z);
+            this.transform.rotation = Quaternion.Euler(280, y, z);
         }
-        if (x > 20f && x > 0 && !top)
+        if (x > 40f && !top)
         {
-            this.transform.rotation = Quaternion.Euler(20, y, z);
+            this.transform.rotation = Quaternion.Euler(40, y, z);
+            
         }
     }
     void LockCameraZ()
@@ -49,6 +63,7 @@ public class Camera_CameraControl : MonoBehaviour
         Vector3 moveDirection = Vector3.zero;
         //Move Forward
         float moveSpeed = 10;
+        /*
         if (Input.GetKey(KeyCode.W))
         {
             moveDirection += relativeTransform.forward;
@@ -81,13 +96,19 @@ public class Camera_CameraControl : MonoBehaviour
             LockCameraZ();
             this.transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
         }
-
+        */
 
 
         //Look Around
-        float h = Input.GetAxisRaw("Mouse X");
-        float v = Input.GetAxisRaw("Mouse Y");
-        transform.Rotate(-v, h, 0f);
+        //float h = Input.GetAxisRaw("Mouse X");
+        //float v = Input.GetAxisRaw("Mouse Y");
+        //transform.Rotate(-v, h, 0f);
+
+        /*
+        // Move around player
+        transform.LookAt(target.transform);
+        transform.RotateAround(point, new Vector3(-v, h, 0.0f), 10 * Time.deltaTime * moveSpeed);
+        */
 
         //if (moveDirection != Vector3.zero)
         //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(moveDirection), rotationSpeed * Time.deltaTime);

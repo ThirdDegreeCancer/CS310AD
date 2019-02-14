@@ -4,50 +4,54 @@ using UnityEngine;
 
 public class Player_CameraControl : MonoBehaviour
 {
+    //private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //rb = GetComponent(Rigidbody);
     }
+
+    
+
+    public Transform relativeTransform;
 
     // Update is called once per frame
     void Update()
     {
-        
+        Move();
     }
     void Move()
     {
+        Vector3 moveDirection = Vector3.zero;
         //Move Forward
-        if (Input.GetKey(KeyCode.UpArrow))
+        float moveSpeed = 10;
+        if (Input.GetKey(KeyCode.W))
         {
-            /*
-            Vector3 position = this.transform.position;
-            position.z += .1f;
-            transform.position = position;
-            */
-            print("UpArrow");
-            transform.Translate(Vector3.forward);
+            moveDirection += relativeTransform.forward;
+            moveDirection.y = 0f;
+            this.transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
         }
+
         //Move Left
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
-            Vector3 position = this.transform.position;
-            position.x -= .1f;
-            transform.position = position;
+            moveDirection -= relativeTransform.right;
+            moveDirection.y = 0f;
+            this.transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
         }
         //Move Back
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S))
         {
-            Vector3 position = this.transform.position;
-            position.z -= .1f;
-            transform.position = position;
+            moveDirection -= relativeTransform.forward;
+            moveDirection.y = 0f;
+            this.transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
         }
         //Move Right
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
-            Vector3 position = this.transform.position;
-            position.x += .1f;
-            transform.position = position;
+            moveDirection += relativeTransform.right;
+            moveDirection.y = 0f;
+            this.transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
         }
     }
 }
