@@ -26,8 +26,6 @@ public class Camera_CameraControl : MonoBehaviour
     {
         offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * 10, Vector3.up) * offset;
         transform.position = target.position + offset;
-        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * 10, Vector3.up) * offset;
-        transform.position = target.position + offset;
         transform.LookAt(target.position);
     }
 
