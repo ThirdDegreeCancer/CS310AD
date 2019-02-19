@@ -59,9 +59,12 @@ public class Camera_CameraControl : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Vector3 moveDirection = Vector3.zero;
-        //Move Forward
         float moveSpeed = 10;
+        LockCameraZ();
+        CameraBoundariesX();
+
         /*
+         Old Movement Controls
         if (Input.GetKey(KeyCode.W))
         {
             moveDirection += relativeTransform.forward;
@@ -95,55 +98,5 @@ public class Camera_CameraControl : MonoBehaviour
             this.transform.position += moveDirection.normalized * moveSpeed * Time.deltaTime;
         }
         */
-
-
-        //Look Around
-        //float h = Input.GetAxisRaw("Mouse X");
-        //float v = Input.GetAxisRaw("Mouse Y");
-        //transform.Rotate(-v, h, 0f);
-
-        /*
-        // Move around player
-        transform.LookAt(target.transform);
-        transform.RotateAround(point, new Vector3(-v, h, 0.0f), 10 * Time.deltaTime * moveSpeed);
-        */
-
-        //if (moveDirection != Vector3.zero)
-        //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(moveDirection), rotationSpeed * Time.deltaTime);
-
-        LockCameraZ();
-        CameraBoundariesX();
     }
 }
-
-
-
-//this.transform.localEulerAngles = new Vector3(Mathf.Clamp(this.transform.localEulerAngles.x, -60, 42), 0, 0);
-/*
-if (transform.localEulerAngles.x > 42)
-{
-    transform.localEulerAngles = new Vector3(42, 0, 0);
-}
-else
-{
-    if (transform.localEulerAngles.x < -60)
-    {
-        transform.localEulerAngles = new Vector3(-60, 0, 0);
-    }
-}
-
-*/
-
-
-
-
-/*
-if(this.transform.rotation.eulerAngles.x > 18)
-{
-    this.transform.Rotate(-transform.rotation.x +18, 0, 0);
-}
-if (this.transform.rotation.eulerAngles.x < -18)
-{
-    this.transform.Rotate(-transform.rotation.x -18, 0, 0);
-}
-*/
