@@ -6,14 +6,21 @@ public class Camera_CameraControl : MonoBehaviour
 {
     public Transform target;
     public Transform relativeTransform;
+
     private Vector3 point;
-    private Vector3 offset = Vector3.zero;
-    private Vector3 offsetY = Vector3.zero;
+
+    private float height = 1f;
+    private float distnace = 2f;
+
+    private Vector3 offsetX;
+    private Vector3 offsetY;
 
     void Start()
     {
+
         point = target.transform.position;//get target's coords
-        offset = new Vector3(target.position.x, target.position.y + 1.0f, target.position.z + 7.0f);
+        offsetX = new Vector3(0f, 1f, 2f);
+        offsetY = new Vector3(0f, 0f, 2f);
 
         transform.LookAt(point);//makes the camera look to it
     }
@@ -24,8 +31,10 @@ public class Camera_CameraControl : MonoBehaviour
     }
     void LateUpdate()
     {
-        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * 10, Vector3.up) * offset;
-        transform.position = target.position + offset;
+        offsetX = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * 10, Vector3.up) * offsetX;
+        offsetY = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * 10, Vector3.up) * offsetY;
+
+        transform.position = target.position + offsetX + offsetY;
         transform.LookAt(target.position);
     }
 
