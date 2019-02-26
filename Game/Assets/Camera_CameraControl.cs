@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Camera_CameraControl : MonoBehaviour
 {
@@ -9,8 +10,8 @@ public class Camera_CameraControl : MonoBehaviour
 
     private Vector3 point;
 
-    private float height = 1f;
-    private float distnace = 2f;
+    //private float height = 1f;
+    //private float distnace = 2f;
 
     private Vector3 offsetX;
     private Vector3 offsetY;
@@ -19,7 +20,7 @@ public class Camera_CameraControl : MonoBehaviour
     {
 
         point = target.transform.position;//get target's coords
-        offsetX = new Vector3(0f, 1f, 2f);
+        offsetX = new Vector3(0f, 10f, 20f);
         offsetY = new Vector3(0f, 0f, 2f);
 
         transform.LookAt(point);//makes the camera look to it
@@ -33,6 +34,8 @@ public class Camera_CameraControl : MonoBehaviour
     {
         offsetX = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * 10, Vector3.up) * offsetX;
         offsetY = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * 10, Vector3.up) * offsetY;
+        offsetX = offsetX.normalized * 8;
+        offsetY = offsetY.normalized * 8;
 
         transform.position = target.position + offsetX + offsetY;
         transform.LookAt(target.position);
@@ -59,6 +62,7 @@ public class Camera_CameraControl : MonoBehaviour
             
         }
     }
+
     void LockCameraZ()
     {
         float z = transform.eulerAngles.z;
@@ -68,7 +72,7 @@ public class Camera_CameraControl : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Vector3 moveDirection = Vector3.zero;
-        float moveSpeed = 10;
+        // moveSpeed = 10;
         LockCameraZ();
         CameraBoundariesX();
 
