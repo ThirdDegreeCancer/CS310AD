@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: 00000000000000000000000000000000
+  productGUID: a0580c6887ebb4ca7a6460c15b2068c0
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -585,7 +585,7 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   cloudProjectId: f4aa7662-58e5-4278-a432-90207307d8b5
   framebufferDepthMemorylessMode: 0
-  projectName: 
+  projectName: Game
   organizationId: thirddegreecancer
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
