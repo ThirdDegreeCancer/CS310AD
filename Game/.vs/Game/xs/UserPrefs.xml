@@ -1,8 +1,10 @@
 ﻿<Properties StartupConfiguration="{DDFBC18F-9396-3137-9CFE-DEB2CDB74636}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Ogre.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Marcos Schultz/MSAdvancedCameraController/UpdateNotes.txt">
     <Files>
       <File FileName="Assets/Camera_CameraControl.cs" Line="37" Column="27" />
-      <File FileName="Assets/Ogre.cs" Line="8" Column="15" />
+      <File FileName="Assets/Ogre.cs" Line="39" Column="23" />
+      <File FileName="Assets/Invector-3rdPersonController/Basic Locomotion LITE/README_Basic.txt" Line="1" Column="1" />
+      <File FileName="Assets/Marcos Schultz/MSAdvancedCameraController/UpdateNotes.txt" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
